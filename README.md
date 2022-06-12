@@ -1,5 +1,8 @@
 # ravencoin-rpc
 
+A package that will help you do RPC calls from Node.js to your Raven core node, that is your full Ravencoin node.
+
+
 more info comin up, stay tuned!
 ```
 
