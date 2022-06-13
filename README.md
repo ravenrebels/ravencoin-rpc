@@ -4,7 +4,7 @@ A package that will help you do RPC calls from Node.js to your Raven core node, 
 
 # Install
 ```
-npm install "@ravenrebels/ravencoin-rpc
+npm install @ravenrebels/ravencoin-rpc
 ```
 #Example 
 
