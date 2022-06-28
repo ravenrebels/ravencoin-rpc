@@ -1,9 +1,11 @@
 import axios from "axios";
+import { methods } from "./docs";
 
+export { methods };
 function throwSyntaxError() {
   throw new Error("Syntax error, call getRPC with (username, password, URL)");
 }
-
+ 
 export function getRPC(username: string, password: string, URL: string) {
   if (!username) {
     throwSyntaxError();
@@ -44,7 +46,7 @@ export function getRPC(username: string, password: string, URL: string) {
 
               const { response } = e;
               const { request, ...errorObject } = response;
-       
+
               rejectionFunc({
                 status: e.response.status,
                 statusText: e.response.statusText,
@@ -69,10 +71,11 @@ Valid methods are ${JSON.stringify(getValidMethods())}`,
     return promise;
   };
 }
-function getValidMethods(){
+function getValidMethods() {
   const keys = Object.keys(methods).sort();
   return keys.join(" ");
 }
+/*
 export const methods = {
   "getaddressbalance": "getaddressbalance",
   "getaddressdeltas": "getaddressdeltas",
@@ -245,4 +248,4 @@ export const methods = {
   "setaccount": "setaccount",
   "settxfee": "settxfee",
   "signmessage": "signmessage"
-}
+}*/

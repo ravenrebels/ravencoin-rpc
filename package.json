@@ -1,6 +1,6 @@
 {
   "name": "@ravenrebels/ravencoin-rpc",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Helps you access your Ravencoin full node using RPC from JavaScript",
   "source": "index.ts",
   "main": "dist/main.js",
@@ -8,7 +8,8 @@
   "types": "dist/types.d.ts",
   "scripts": {
     "build": "npx parcel build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-docs": "node createDocs"
   },
   "repository": {
     "type": "git",
