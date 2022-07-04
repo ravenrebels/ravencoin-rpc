@@ -39,6 +39,7 @@ will print out
 ```
 
 # Methods / commands / Procedure calls
+Here is a list of all method/commans [All methods](ravencoin_methods.md)
 
 In your local Raven core wallet, you can go to
 
@@ -248,8 +249,4 @@ setaccount "address" "account"
 settxfee amount
 signmessage "address" "message"
 
-```
-
-```
-
-```
+``` 
