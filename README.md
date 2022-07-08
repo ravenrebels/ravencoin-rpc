@@ -32,7 +32,42 @@ will print out
 ```
 { name: 'ELVIS', amount: 1, units: 8, reissuable: 1, has_ipfs: 0 }
 ```
+## Example list all generated addresses in a Wallet (Raven core)
+Use method `listreceivedbyaddress` to receive a list of all generated addresses.
+Write the result to a .json file
+```
+const { getRPC, methods } = require("@ravenrebels/ravencoin-rpc");
+//methods is a list of all available methods/functions/commands/procedures
 
+const method = methods.listreceivedbyaddress;
+const minConfirmations = 1;
+const includeEmpty = true;
+
+const params = [minConfirmations, includeEmpty];
+
+const rpc = getRPC("UsernameSecret", "PasswordSecret", "http://localhost:8766");
+
+const promise = rpc(method, params);
+promise.catch((e) => {
+  console.dir(e);
+});
+
+promise.then((response) => {
+  const addresses = [];
+  response.map(function (obj) {
+    addresses.push(obj.address);
+  });
+  writeToFile(addresses);
+  console.log("DONE, check out addresses.json");
+});
+
+function writeToFile(list){
+    const json = JSON.stringify(list, null, 4);
+    require("fs").writeFileSync("./addresses.json", json);
+
+}
+
+```
 # Methods / commands / Procedure calls
 Here is a list of all method/commands [All methods](ravencoin_methods.md)
 
