@@ -51,8 +51,7 @@ export function getRPC(username: string, password: string, URL: string) {
                 status: e.response.status,
                 statusText: e.response.statusText,
                 error: errorObject.data.error,
-                description: `Could connect to Raven core node but got an error. Perhaps "${method}" is not a valid method.
-Valid methods are ${JSON.stringify(getValidMethods())}`,
+                description: `Could connect to Raven core node but got an error. Method "${method}"`,
               });
             } else if (e.request) {
               //Could NOT connect to wallet
