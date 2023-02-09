@@ -57,6 +57,7 @@ export function getRPC(username: string, password: string, URL: string) {
               //Could NOT connect to wallet
 
               rejectionFunc({
+                type:"ServerUnreachable",
                 error: "Could not communicate with Raven core node",
                 description:
                   "Are you sure that the URL is correct? The URL is usually something like http://localhost:8766",
