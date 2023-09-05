@@ -89,7 +89,7 @@ async function postData(
   let base64Credentials = "";
 
   //btoa or Buffer, depends if we are in Node.js or in the browser
-  if (btoa) {
+  if (typeof btoa === "function") {
     base64Credentials = btoa(`${username}:${password}`);
   } else if (Buffer) {
     base64Credentials = Buffer.from(`${username}:${password}`).toString(
