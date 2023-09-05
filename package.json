@@ -1,6 +1,6 @@
 {
   "name": "@ravenrebels/ravencoin-rpc",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "Helps you access your Ravencoin full node using RPC from JavaScript",
   "types": "dist/types.d.ts",
   "type": "module",
@@ -27,13 +27,9 @@
     "url": "https://github.com/ravenrebels/ravencoin-rpc/issues"
   },
   "homepage": "https://github.com/ravenrebels/ravencoin-rpc#readme",
-  "dependencies": {
-    "axios": "^1.5.0"
-  },
   "devDependencies": {
     "@parcel/packager-ts": "^2.6.0",
     "@parcel/transformer-typescript-types": "^2.6.0",
-    "@types/axios": "^0.14.0",
     "@types/es6-promise": "^3.3.0",
     "@types/node": "^18.0.45",
     "buffer": "^6.0.3",
