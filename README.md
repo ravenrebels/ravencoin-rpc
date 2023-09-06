@@ -2,11 +2,42 @@
 
 A package that will help you do RPC calls from Node.js to your Raven core node, that is your full Ravencoin node.
 
+URLs for locally installed Ravencoin nodes.
+
+- http://127.0.0.1:8766 for mainnet
+- http://127.0.0.1:18766 for testnet
+
+Ravencoin as a service, you don't need your own node
+
+- https://rvn-rpc-mainnet.ting.finance/rpc for mainnet
+- https://rvn-rpc-testnet.ting.finance/rpc for testnet
+
 # Install
+
 ```
 npm install @ravenrebels/ravencoin-rpc
 ```
-# Example 
+
+# Example using ES modules
+
+This example uses Ravencoin as a service from https://rpc.ting.finance.
+
+In node.js you need to give the file the ending .mjs for modular JavaScript.
+Like `example.mjs`
+
+```
+import { getRPC, methods } from "@ravenrebels/ravencoin-rpc";
+
+const username = "anonymous";
+const password = "anonymous";
+const URL = "https://rvn-rpc-mainnet.ting.finance/rpc";
+const rpc = getRPC(username, password, URL);
+
+const params = [];
+rpc(methods.getblockcount, params).then(console.log);
+```
+
+# Example using CommonJS
 
 ```
 
@@ -32,9 +63,12 @@ will print out
 ```
 { name: 'ELVIS', amount: 1, units: 8, reissuable: 1, has_ipfs: 0 }
 ```
+
 ## Example list all generated addresses in a Wallet (Raven core)
+
 Use method `listreceivedbyaddress` to receive a list of all generated addresses.
 Write the result to a .json file
+
 ```
 const { getRPC, methods } = require("@ravenrebels/ravencoin-rpc");
 //methods is a list of all available methods/functions/commands/procedures
@@ -68,7 +102,9 @@ function writeToFile(list){
 }
 
 ```
+
 # Methods / commands / Procedure calls
+
 Here is a list of all method/commands [All methods](ravencoin_methods.md)
 
 In your local Raven core wallet, you can go to
@@ -279,4 +315,4 @@ setaccount "address" "account"
 settxfee amount
 signmessage "address" "message"
 
-``` 
+```
