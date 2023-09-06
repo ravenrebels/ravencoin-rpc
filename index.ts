@@ -102,7 +102,7 @@ async function postData(
     method: "POST", // *GET, POST, PUT, DELETE, etc.
     mode: "cors", // no-cors, *cors, same-origin
     headers: {
-      Authentification: base64Credentials,
+      Authorization: "Basic " + base64Credentials,
       "Content-Type": "application/json",
 
       // 'Content-Type': 'application/x-www-form-urlencoded',
