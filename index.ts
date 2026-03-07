@@ -16,7 +16,7 @@ export function getRPC(username: string, password: string, URL: string) {
     throwSyntaxError();
   }
 
-  return async function rpc(method: string, params: any[]) {
+  return function rpc(method: string, params: any[]) {
     const promise = new Promise((resolutionFunc, rejectionFunc) => {
       const data = {
         jsonrpc: "2.0",
@@ -38,17 +38,17 @@ export function getRPC(username: string, password: string, URL: string) {
 
             if (response.ok) {
               //Happy flow
-              const obj = await response.json(); //Convert to JSON
+              const obj: any = await response.json(); //Convert to JSON
               resolutionFunc(obj.result);
             } else if (response.status !== 200) {
               //OK something is wrong
-              let obj = {
+              let obj: any = {
                 error: null,
                 description: null,
               };
               try {
                 obj = await response.json();
-              } catch (e) {}
+              } catch (e) { }
               const myError = {
                 statusText: response.statusText,
                 status: response.status,
@@ -68,8 +68,8 @@ export function getRPC(username: string, password: string, URL: string) {
                 "Are you sure that the URL is correct? The URL is usually mainnet = http://127.0.0.1:8766 and testnet =  http://127.0.0.1:18766",
             });
           });
-      } catch (e) {
-        rejectionFunc(e.response);
+      } catch (e: any) {
+        rejectionFunc(e.message || e);
       }
     });
     return promise;
@@ -89,12 +89,12 @@ async function postData(
   let base64Credentials = "";
 
   //btoa or Buffer, depends if we are in Node.js or in the browser
-  if (typeof btoa === "function") {
-    base64Credentials = btoa(`${username}:${password}`);
-  } else if (Buffer) {
+  if (typeof Buffer !== "undefined") {
     base64Credentials = Buffer.from(`${username}:${password}`).toString(
       "base64"
     );
+  } else if (typeof btoa === "function") {
+    base64Credentials = btoa(`${username}:${password}`);
   }
 
   // Default options are marked with *
