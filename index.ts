@@ -1,4 +1,7 @@
 import { methods } from "./docs";
+import JSONBig from "json-bigint";
+
+const JSONB = JSONBig({ storeAsString: true });
 
 export { methods };
 function throwSyntaxError() {
@@ -38,7 +41,8 @@ export function getRPC(username: string, password: string, URL: string) {
 
             if (response.ok) {
               //Happy flow
-              const obj: any = await response.json(); //Convert to JSON
+              const text = await response.text();
+              const obj: any = JSONB.parse(text); //Convert to JSON without precision loss
               resolutionFunc(obj.result);
             } else if (response.status !== 200) {
               //OK something is wrong
@@ -47,7 +51,8 @@ export function getRPC(username: string, password: string, URL: string) {
                 description: null,
               };
               try {
-                obj = await response.json();
+                const text = await response.text();
+                obj = JSONB.parse(text);
               } catch (e) { }
               const myError = {
                 statusText: response.statusText,
